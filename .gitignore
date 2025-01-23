@@ -9,11 +9,8 @@ node_modules
 
 # Compiled output
 dist
-packages/indus/lib
-packages/orion/lib
-!packages/orion/pulumi/lib
-packages/paparazzi/lib
-packages/zapier/lib
+
+next-env.d.ts
 
 # Environment variables
 .env
