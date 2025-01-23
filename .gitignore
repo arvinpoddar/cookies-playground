@@ -1,4 +1,63 @@
+yalc.lock
+.yalc
+
+# Node.js / NPM
 node_modules
+
+# Log files
+*.log
+
+# Compiled output
 dist
-build
+packages/indus/lib
+packages/orion/lib
+!packages/orion/pulumi/lib
+packages/paparazzi/lib
+packages/zapier/lib
+
+# Environment variables
 .env
+.env.local
+.env.*.local
+!/.env
+
+# For local patches
+.local/
+
+# Cache
+.cache
+.eslintcache
+*.tsbuildinfo
+
+# VSCode
+# https://github.com/github/gitignore/blob/master/Global/VisualStudioCode.gitignore
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Local History for Visual Studio Code
+.history/
+
+# Other editors and IDEs
+.idea
+**/.projections.json
+
+# macOS
+.DS_Store
+
+# Next.js
+.next
+
+# Vercel
+.vercel
+
+# Turbo
+.turbo
+
+# test results
+**/test-results
+**/playwright-report/
+**/blob-report/
+**/playwright/.cache/
