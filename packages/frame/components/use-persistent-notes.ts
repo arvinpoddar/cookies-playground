@@ -12,6 +12,8 @@ function subscribeToNotes(callback: () => void): () => void {
 }
 
 function getNotes(): string {
+  const isServer = !(typeof window != "undefined" && window.document);
+  if (isServer) return "";
   const storedNotes = localStorage.getItem(STORAGE_KEY);
   return storedNotes ?? "";
 }
@@ -34,6 +36,6 @@ function setNotes(notes: string) {
 }
 
 export function usePersistentNotes() {
-  const notes = useSyncExternalStore(subscribeToNotes, getNotes);
+  const notes = useSyncExternalStore(subscribeToNotes, getNotes, getNotes);
   return [notes, setNotes] as const;
 }
