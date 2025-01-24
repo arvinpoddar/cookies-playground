@@ -1,13 +1,14 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { usePersistentNotes } from "./use-persistent-notes";
 
 type Props = {
   defaultUrl: string;
 };
 
 export function Frame({ defaultUrl }: Props) {
-  const [notes, setNotes] = useState("");
+  const [notes, setNotes] = usePersistentNotes();
 
   const [history, setHistory] = useState<string[]>(() =>
     defaultUrl ? [defaultUrl] : []
