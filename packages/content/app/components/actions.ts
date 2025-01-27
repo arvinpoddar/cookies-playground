@@ -1,6 +1,6 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { cookies, draftMode } from "next/headers";
 
 const COOKIE_NAME = "myToken";
 
@@ -9,13 +9,10 @@ export async function getToken(): Promise<string | null> {
 }
 
 export async function setToken(value: string): Promise<boolean> {
-  (await cookies()).set({
-    name: COOKIE_NAME,
-    value,
-    httpOnly: true,
-    sameSite: "lax",
-    secure: true,
-    path: "/",
-  });
+  (await cookies()).set({ name: COOKIE_NAME, value });
   return true;
+}
+
+export async function disableDraftMode(): Promise<void> {
+  return (await draftMode()).disable();
 }
