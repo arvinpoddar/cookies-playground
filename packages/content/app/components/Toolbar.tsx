@@ -57,7 +57,7 @@ export function Toolbar({ draftMode = false }: Props) {
         </div>
       </div>
 
-      <div className="grid grid-rows-2 grid-cols-3 gap-3">
+      <div className="flex flex-wrap gap-3">
         <button
           className={buttonClass}
           onClick={() => setPrimaryCookie(getToken())}
