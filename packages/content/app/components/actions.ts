@@ -22,6 +22,7 @@ export async function setPartitionedCookie(value: string): Promise<boolean> {
     name: "partitionedCookie",
     value,
     partitioned: true,
+    sameSite: "none",
     secure: true,
   });
   return true;
