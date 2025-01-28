@@ -67,7 +67,6 @@ export function Frame({ defaultUrl }: Props) {
         src={frameUrl}
         title="iframe"
         className="h-[60vh] w-full rounded-lg overflow-hidden border dark:border-gray-100 border-gray-600"
-        sandbox="allow-storage-access-by-user-activation allow-same-origin allow-scripts"
       />
 
       <textarea
