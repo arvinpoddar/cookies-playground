@@ -3,13 +3,13 @@
 import { cookies, draftMode } from "next/headers";
 
 export async function setPrimaryCookie(value: string): Promise<boolean> {
-  (await cookies()).set({ name: "firstClassToken", value });
+  (await cookies()).set({ name: "firstClassCookie", value });
   return true;
 }
 
 export async function setCrossSiteCookie(value: string): Promise<boolean> {
   (await cookies()).set({
-    name: "crossSiteToken",
+    name: "crossSiteCookie",
     value,
     sameSite: "none",
     secure: true,
