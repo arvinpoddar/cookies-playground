@@ -1,11 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { disableDraftMode, setToken } from "./actions";
+import {
+  disableDraftMode,
+  setCrossSiteCookie,
+  setPartitionedCookie,
+  setPrimaryCookie,
+} from "./actions";
+
+function getToken() {
+  return Math.random().toString(36).substring(2);
+}
 
 type Props = {
   draftMode?: boolean;
 };
+
+const buttonClass =
+  "rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm py-2 px-4 disabled:opacity-50 disabled:cursor-not-allowed";
 
 export function Toolbar({ draftMode = false }: Props) {
   const [counter, setCounter] = useState(0);
@@ -44,31 +56,42 @@ export function Toolbar({ draftMode = false }: Props) {
         </div>
       </div>
 
-      <div className="flex-1 flex items-center gap-3">
+      <div className="grid grid-rows-2 grid-cols-3 gap-3">
         <button
-          className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
+          className={buttonClass}
+          onClick={() => setPrimaryCookie(getToken())}
+        >
+          Set Primary Cookie
+        </button>
+
+        <button
+          className={buttonClass}
+          onClick={() => setCrossSiteCookie(getToken())}
+        >
+          Set Cross-Site Cookie
+        </button>
+
+        <button
+          className={buttonClass}
+          onClick={() => setPartitionedCookie(getToken())}
+        >
+          Set Partitioned Cookie
+        </button>
+
+        <button
+          className={buttonClass}
           onClick={() => setCounter((prev) => prev + 1)}
         >
           Count: {counter}
         </button>
 
-        <button
-          className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-          onClick={() => setToken((Math.random() * 1000000).toFixed())}
-        >
-          Trigger server action
-        </button>
-
-        <button
-          className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-          onClick={() => disableDraftMode()}
-        >
+        <button className={buttonClass} onClick={() => disableDraftMode()}>
           Disable draft mode
         </button>
 
         {/* Request storage access */}
         <button
-          className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 disabled:opacity-50"
+          className={buttonClass}
           onClick={() => requestStorageAccess()}
           disabled={hasStorageAccess !== false}
         >

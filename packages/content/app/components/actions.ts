@@ -2,14 +2,28 @@
 
 import { cookies, draftMode } from "next/headers";
 
-const COOKIE_NAME = "myToken";
-
-export async function getToken(): Promise<string | null> {
-  return (await cookies()).get(COOKIE_NAME)?.value ?? null;
+export async function setPrimaryCookie(value: string): Promise<boolean> {
+  (await cookies()).set({ name: "firstClassToken", value });
+  return true;
 }
 
-export async function setToken(value: string): Promise<boolean> {
-  (await cookies()).set({ name: COOKIE_NAME, value });
+export async function setCrossSiteCookie(value: string): Promise<boolean> {
+  (await cookies()).set({
+    name: "crossSiteToken",
+    value,
+    sameSite: "none",
+    secure: true,
+  });
+  return true;
+}
+
+export async function setPartitionedCookie(value: string): Promise<boolean> {
+  (await cookies()).set({
+    name: "partitionedCookie",
+    value,
+    partitioned: true,
+    secure: true,
+  });
   return true;
 }
 
