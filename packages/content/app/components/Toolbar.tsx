@@ -5,6 +5,7 @@ import {
   disableDraftMode,
   setCrossSiteCookie,
   setPartitionedCookie,
+  setPersistentCrossSiteCookie,
   setPrimaryCookie,
 } from "./actions";
 
@@ -69,6 +70,13 @@ export function Toolbar({ draftMode = false }: Props) {
           onClick={() => setCrossSiteCookie(getToken())}
         >
           Set Cross-Site Cookie
+        </button>
+
+        <button
+          className={buttonClass}
+          onClick={() => setPersistentCrossSiteCookie(getToken())}
+        >
+          Set Cross-Site Cookie (1 year)
         </button>
 
         <button
