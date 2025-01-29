@@ -8,6 +8,7 @@ import {
   setPersistentCrossSiteCookie,
   setPrimaryCookie,
 } from "./actions";
+import Link from "next/link";
 
 function getToken() {
   return Math.random().toString(36).substring(2);
@@ -105,6 +106,10 @@ export function Toolbar({ draftMode = false }: Props) {
         >
           Request permissions
         </button>
+
+        <Link href="/mirror">
+          <button className={buttonClass}>Link to /mirror</button>
+        </Link>
       </div>
     </div>
   );
