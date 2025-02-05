@@ -21,6 +21,10 @@ type Props = {
 const buttonClass =
   "rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm py-2 px-4 disabled:opacity-50 disabled:cursor-not-allowed";
 
+function setLocalCookie(cookieString: string) {
+  document.cookie = cookieString;
+}
+
 export function Toolbar({ draftMode = false }: Props) {
   const [counter, setCounter] = useState(0);
 
@@ -64,6 +68,28 @@ export function Toolbar({ draftMode = false }: Props) {
           onClick={() => setPrimaryCookie(getToken())}
         >
           Set Primary Cookie
+        </button>
+
+        <button
+          className={buttonClass}
+          onClick={() => {
+            const token = getToken();
+            setLocalCookie(`localPrimaryCookie=${token};`);
+          }}
+        >
+          Set Local Primary Cookie
+        </button>
+
+        <button
+          className={buttonClass}
+          onClick={() => {
+            const token = getToken();
+            setLocalCookie(
+              `localThirdPartyCookie=${token}; SameSite=None; Secure;`
+            );
+          }}
+        >
+          Set Local Cross-Site Cookie
         </button>
 
         <button
