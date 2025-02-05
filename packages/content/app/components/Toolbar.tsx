@@ -23,6 +23,7 @@ const buttonClass =
 
 function setLocalCookie(cookieString: string) {
   document.cookie = cookieString;
+  console.log({ updatedLocalCookie: document.cookie });
 }
 
 export function Toolbar({ draftMode = false }: Props) {
